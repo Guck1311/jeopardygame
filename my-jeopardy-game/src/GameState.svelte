@@ -14,6 +14,8 @@
   let activeEditGame = false;
   const PORT = process.env.PORT || 5173;
 
+  let gameboardGoBack: Writable<HTMLButtonElement> = writable();
+
   let catMaxHeight: Writable<number> = writable(0);
 
   let hostGame: boolean = false;
@@ -179,8 +181,8 @@
   >
   <button on:click={resetGameState}>Go Back</button>
 {:else if !activeEditGame && hostGame}
-  <GameBoard {game} />
-  <button on:click={() => hostGame = false}>Go Back</button>
+  <GameBoard {game} {gameboardGoBack}/>
+  <button bind:this={$gameboardGoBack} on:click={() => hostGame = false}>Go Back</button>
 {:else}
   <p>Something must have went horribly wrong lol</p>
 {/if}

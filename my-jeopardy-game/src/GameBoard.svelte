@@ -5,6 +5,7 @@
   import QuestionPage from "./QuestionPage.svelte";
 
   export let game: Writable<gameStateSchema>;
+  export let gameboardGoBack: Writable<HTMLButtonElement>;
 
   // Define colors for each dollar amount
   const colors: string[] = [
@@ -21,6 +22,15 @@
   // Function to handle the click event on a question
   function handleClick(question: questionSchema) {
     curQuestion = question;
+  }
+
+  // Hide go back to main menu button if popup is opened
+  $: {
+    if ($gameboardGoBack) {
+      if (!curQuestion) {
+        $gameboardGoBack.hidden = false;
+      } else $gameboardGoBack.hidden = true;
+    }
   }
 </script>
 
@@ -52,7 +62,7 @@
     {/each}
   </div>
 {:else}
-  <QuestionPage bind:curQuestion={curQuestion} />
+  <QuestionPage bind:curQuestion />
 {/if}
 
 <style>
