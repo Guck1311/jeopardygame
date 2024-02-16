@@ -106,21 +106,29 @@
 
 <style>
   div {
-    width: 100%;
+    width: calc(100%); 
     border: none;
     cursor: pointer;
-    display: flex; /* Use flexbox */
-    align-items: center; /* Vertically center items */
-    justify-content: center; /* Horizontally center items */
-    height: 3em;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    height: 100%; 
+    border-radius: 10px; 
+    padding: 0.5rem;
+    margin: -0.5rem;
+    background-color: #222;
+    transition: background-color 0.3s ease;
   }
 
   div:hover {
-    background-color: #e0e0e0;
+    color: #e7eb1f;
+    background-color: #222;
+    box-shadow:0px 0px 0px 2px yellow inset;
   }
 
   div.template {
     background: blue;
   }
 </style>
+
 

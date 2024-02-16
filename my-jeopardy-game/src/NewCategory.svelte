@@ -62,9 +62,12 @@
   <!-- Render category names -->
   <div class="row">
     {#each $game.game as category, i}
-      <div class="category-cell">
+      <div class="category-cell" class:hoverEffect={category.status !== 'Completed'}>
         <div>
-          <span style="color: {category.status === "Completed" ? "green" : "red"}">Completed</span>
+          <span
+            style="color: {category.status === 'Completed' ? 'green' : 'red'}"
+            >Completed</span
+          >
           <input
             type="checkbox"
             checked={category.status === "Completed" ? true : false}
@@ -72,7 +75,11 @@
             on:click={updateCatStatus}
           />
         </div>
-        <InPlaceEdit disableCat={$game.game[i].status === "Completed" ? true : false} bind:value={names[i]} required={true} />
+        <InPlaceEdit
+          disableCat={$game.game[i].status === "Completed" ? true : false}
+          bind:value={names[i]}
+          required={true}
+        />
       </div>
     {/each}
   </div>
@@ -95,40 +102,72 @@
   .jeopardy-board {
     display: flex;
     flex-direction: column;
-    background-color: #333;
+    background-color: #000;
     color: white;
-    padding: 2rem;
+    padding: 1rem;
     max-width: 100%;
     max-height: 100%;
     overflow: auto;
+    border-radius: 15px;
+    border: 2px solid #333;
   }
 
   .row {
     display: flex;
     flex: 1;
+    justify-content: space-evenly;
   }
 
   .category-cell {
-    background-color: #666;
+    background-color: #111;
     font-weight: bold;
     flex: 1;
     text-align: center;
-    border: 1px solid #666;
+    border: 1px solid #333;
     box-sizing: border-box;
-    cursor: pointer;
-    max-width: calc(
-      100% / var(--num-categories)
-    ); /* Ensure category cell width doesn't exceed the width of question cells */
-    display: grid;
-    grid-template-rows: auto 1fr;
-    padding: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 0.5rem;
   }
 
   .value-cell {
     flex: 1;
     text-align: center;
-    border: 1px solid #666;
+    border: 1px solid #333;
     box-sizing: border-box;
     cursor: pointer;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 0.5rem;
+    background-color: #222;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
+
+  .value-cell:hover {
+    background-color: #333;
+  }
+
+  input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    border: 2px solid #888;
+    background-color: #333;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .hoverEffect:hover {
+    color: #e7eb1f;
+    background-color: #222;
+    box-shadow: 0px 0px 0px 2px yellow inset;
+  }
+
 </style>

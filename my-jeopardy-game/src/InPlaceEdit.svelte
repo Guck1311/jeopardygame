@@ -50,6 +50,7 @@
   <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div
     class="parent-div"
+    class:pointer={!disableCat}
     on:click={() => {
       disableCat ? null : edit();
     }}
@@ -87,7 +88,6 @@
   .parent-div {
     display: flex;
     flex-direction: row;
-    cursor: pointer;
     align-items: center;
     height: 100%;
     margin: 0px 5px;
@@ -107,5 +107,9 @@
 
   input {
     max-width: 130px;
+  }
+
+  .pointer {
+    cursor: pointer;
   }
 </style>
