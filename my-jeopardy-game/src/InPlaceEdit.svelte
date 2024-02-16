@@ -104,4 +104,8 @@
     margin-left: 5px;
     vertical-align: middle;
   }
+
+  input {
+    max-width: 130px;
+  }
 </style>
