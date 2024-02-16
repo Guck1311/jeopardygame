@@ -72,7 +72,7 @@
             on:click={updateCatStatus}
           />
         </div>
-        <InPlaceEdit bind:value={names[i]} required={true} />
+        <InPlaceEdit disableCat={$game.game[i].status === "Completed" ? true : false} bind:value={names[i]} required={true} />
       </div>
     {/each}
   </div>

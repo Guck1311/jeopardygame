@@ -1,8 +1,10 @@
 <script lang="ts">
   import { createEventDispatcher, onMount } from "svelte";
+  import type { categorySchema } from "./Types";
 
   export let value: string;
   export let required = true;
+  export let disableCat: boolean = false;
 
   const dispatch = createEventDispatcher();
   let editing = false,
@@ -46,21 +48,28 @@
 {:else}
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <!-- svelte-ignore a11y-no-static-element-interactions -->
-  <div class="parent-div" on:click={edit}>
+  <div
+    class="parent-div"
+    on:click={() => {
+      disableCat ? null : edit();
+    }}
+  >
     <span class="content">{value}</span>
-    <div class="edit-symbol">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        width="16"
-        height="16"
-      >
-        <path
-          fill="currentColor"
-          d="M3 17v4h4L17 9l-4-4L3 17zm18.3-9.2c.4-.4.4-1 0-1.4l-2.3-2.3c-.4-.4-1-.4-1.4 0l-1.8 1.8 4 4 1.8-1.8z"
-        />
-      </svg>
-    </div>
+    {#if !disableCat}
+      <div class="edit-symbol">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="16"
+          height="16"
+        >
+          <path
+            fill="currentColor"
+            d="M3 17v4h4L17 9l-4-4L3 17zm18.3-9.2c.4-.4.4-1 0-1.4l-2.3-2.3c-.4-.4-1-.4-1.4 0l-1.8 1.8 4 4 1.8-1.8z"
+          />
+        </svg>
+      </div>
+    {/if}
   </div>
 {/if}
 
